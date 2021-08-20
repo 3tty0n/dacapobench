@@ -28,7 +28,7 @@
     <target name="bm-build">
         <property name="bm-tmp-dir" location="${bm-build-dir}/build" />
         <mkdir dir="${bm-tmp-dir}" />
-        <javac srcdir="${bm-build-dir}/${bm-name}/src" destdir="${bm-tmp-dir}" source="1.5" target="1.5" debug="true" debuglevel="lines,vars,source" />
+        <javac srcdir="${bm-build-dir}/${bm-name}/src" destdir="${bm-tmp-dir}" release="8" source="1.8" target="1.8" debug="true" debuglevel="lines,vars,source" />
         <copy todir="${bm-tmp-dir}/avrora/gui">
             <fileset dir="${bm-build-dir}/${bm-name}/src/avrora/gui">
                 <include name="images/*" />
