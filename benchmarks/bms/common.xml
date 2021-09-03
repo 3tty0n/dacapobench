@@ -93,7 +93,7 @@
 		</antcall>
 	</target>
 
-	<target name="pre-build" depends="clean, init, unpack"/>
+	<target name="pre-build" depends=""/>
 
 	<target name="clean">
 		<delete dir="${bm-output-dir}"/>
