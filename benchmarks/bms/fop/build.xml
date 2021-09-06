@@ -20,7 +20,7 @@
     <!-- <property name="bm-harness-classpath" value="${bm-jars}/fop.jar" /> -->
     <property name="bm-build-top" value="${bm-build-dir}/${bm-name}-${bm-version}/fop" />
 
-    <!-- <target name="unpack" depends="untar, patch" /> -->
+    <target name="unpack" depends="untar, patch" />
 
     <target name="bm-build">
         <ant dir="${bm-build-top}" target="package" inheritall="false" />
