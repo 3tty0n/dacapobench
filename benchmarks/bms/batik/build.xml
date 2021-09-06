@@ -20,13 +20,19 @@
 
     <property name="batik-top" value="${bm-build-dir}/batik-${batik.major.version}"/>
 
-    <!-- <target name="unpack" depends="unzip, patch"/> -->
+    <target name="dir.check">
+      <condition property="dir.exists">
+        <available file="${batic-top}" type="dir"/>
+      </condition>
+    </target>
+
+    <target name="unpack" depends="dir.check, unzip, patch" unless="dir.exists"/>
 
     <target name="bm-build">
-        <exec executable="${ant.home}/bin/ant" dir="${batik-top}" failonerror="yes">
-          <arg line="all-jar"/>
-          <arg line="-Ddebug=on"/>
-        </exec>
+      <exec executable="${ant.home}/bin/ant" dir="${batik-top}" failonerror="yes">
+        <arg line="all-jar"/>
+        <arg line="-Ddebug=on"/>
+      </exec>
     </target>
 
     <target name="jar" depends="deps">
