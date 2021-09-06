@@ -23,12 +23,18 @@
 
     <import file="../common.xml" />
 
-    <!-- <target name="unpack" depends="untar" /> -->
+    <target name="dir.check">
+      <condition property="dir.exists">
+        <available file="${bm-build-dir}" type="dir"/>
+      </condition>
+    </target>
+
+    <target name="unpack" depends="dir.check, untar" unless="dir.exists"/>
 
     <target name="bm-build">
         <property name="bm-tmp-dir" location="${bm-build-dir}/build" />
         <mkdir dir="${bm-tmp-dir}" />
-        <javac srcdir="${bm-build-dir}/${bm-name}/src" destdir="${bm-tmp-dir}" release="8" source="1.8" target="1.8" debug="true" debuglevel="lines,vars,source" />
+        <javac source="1.8" target="1.8" srcdir="${bm-build-dir}/${bm-name}/src" destdir="${bm-tmp-dir}" debug="true" debuglevel="lines,vars,source" />
         <copy todir="${bm-tmp-dir}/avrora/gui">
             <fileset dir="${bm-build-dir}/${bm-name}/src/avrora/gui">
                 <include name="images/*" />
