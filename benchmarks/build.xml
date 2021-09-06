@@ -3,7 +3,7 @@
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0.
  * You may obtain the license at
- * 
+ *
  *    http://www.opensource.org/licenses/apache2.0.php
  -->
 <project name="DacapoBenchmarks" default="dist" basedir=".">
@@ -27,7 +27,7 @@ DEPENDENCIES:
 For convinience, javacc and maven are included in the tools directory:
     ${toolsdir}
 
-        
+
 BUILDING:
         0. System requirement:
             Building DaCapo requires latest JDK 8.
@@ -140,7 +140,7 @@ BUILDING:
         <mkdir dir="${log.build.dir}" />
         <mkdir dir="${dacapo.build.dir}" />
         <mkdir dir="${dacapo.build.doc.dir}"/>
-    	
+
         <echo>build.nickname=${build.nickname}</echo>
         <echo>build.version=${build.version}</echo>
     </target>
@@ -235,19 +235,19 @@ BUILDING:
         </zip>
     </target>
 
-    <!-- ================================= 
-         target: dist              
+    <!-- =================================
+         target: dist
          ================================= -->
     <target name="dist" depends="harness,compile">
         <move file="${build.target-jar}" tofile="dacapo-${build.version}.jar"/>
     </target>
 
     <target name="doc" depends="init,bootstrap,harness" description="make the top level documentation">
-    	
-    	<jar /> 
+
+    	<jar />
     </target>
 
-	
+
     <!-- =================================
          target: bootstrap for running harness
          ================================= -->
@@ -283,21 +283,21 @@ BUILDING:
         <delete dir="${dacpao.build.dir}"/>
     </target>
 
-    <!-- ================================= 
+    <!-- =================================
          target: compile  all sources
          ================================= -->
     <target name="compile" depends="avrora,batik,h2,eclipse,fop,jython,luindex,lusearch,pmd,sunflow,tradebeans,tradesoap,tomcat,xalan">
         <antcall target="build.status.fail" />
         <antcall target="build.status.pass" />
     </target>
-	
-    <!-- ================================= 
-         target: harness           
+
+    <!-- =================================
+         target: harness
          ================================= -->
     <target name="harness" depends="init,bootstrap" description="compile the source ">
         <ant antfile="harness/build.xml"/>
     </target>
-	
+
     <target name="clean-harness" depends="init">
         <ant antfile="harness/build.xml" target="clean"/>
     </target>
@@ -319,7 +319,7 @@ BUILDING:
             </exec>
         </sequential>
     </macrodef>
- 
+
     <target name="clean-benchmarks" depends="init">
         <clean.bm benchmark="avrora"/>
         <clean.bm benchmark="batik"/>
@@ -338,8 +338,8 @@ BUILDING:
         <clean.bm benchmark="xalan"/>
     </target>
 
-    <target name="clean" depends="clean-benchmarks,clean-harness,clean-bootstrap"/>
-  
+    <!-- <target name="clean" depends="clean-harness,clean-bootstrap"/> -->
+
     <!-- *************************************************************************** -->
     <!--                            Build                                            -->
     <!-- *************************************************************************** -->
