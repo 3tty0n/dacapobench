@@ -286,7 +286,7 @@ BUILDING:
     <!-- =================================
          target: compile  all sources
          ================================= -->
-    <target name="compile" depends="avrora,batik,h2,eclipse,fop,jython,luindex,lusearch,pmd,sunflow,tradebeans,tradesoap,tomcat,xalan">
+    <target name="compile" depends="avrora,batik,h2,eclipse,fop,luindex,lusearch,pmd,sunflow,tradebeans,tradesoap,tomcat,xalan">
         <antcall target="build.status.fail" />
         <antcall target="build.status.pass" />
     </target>
@@ -326,7 +326,7 @@ BUILDING:
         <clean.bm benchmark="h2"/>
         <clean.bm benchmark="eclipse"/>
         <clean.bm benchmark="fop"/>
-        <clean.bm benchmark="jython"/>
+        <!-- <clean.bm benchmark="jython"/> -->
         <clean.bm benchmark="luindex"/>
         <clean.bm benchmark="lusearch"/>
         <clean.bm benchmark="lusearch-fix"/>
@@ -410,9 +410,9 @@ See ${log.build.report} for a summary of benchmark build status.
     <target name="fop" depends="init,harness">
         <build.bm benchmark="fop"/>
     </target>
-    <target name="jython" depends="init,harness">
-        <build.bm benchmark="jython"/>
-    </target>
+    <!-- <target name="jython" depends="init,harness"> -->
+    <!--     <build.bm benchmark="jython"/> -->
+    <!-- </target> -->
     <target name="luindex" depends="init,harness">
         <build.bm benchmark="luindex"/>
     </target>
