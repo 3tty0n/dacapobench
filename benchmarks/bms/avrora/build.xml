@@ -29,7 +29,7 @@
       </condition>
     </target>
 
-    <target name="unpack" depends="dir.check, untar" unless="dir.exists"/>
+    <target name="unpack" depends="untar, patch"/>
 
     <target name="bm-build">
         <property name="bm-tmp-dir" location="${bm-build-dir}/build" />

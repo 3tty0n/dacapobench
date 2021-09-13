@@ -1,0 +1,57 @@
+--- avrora/src/avrora/syntax/atmel/AtmelParser.jj	2021-09-14 02:38:47.082546655 +0900
++++ avrora/src/avrora/syntax/atmel/AtmelParser.jj	2021-09-14 02:37:48.839475764 +0900
+@@ -67,27 +67,27 @@
+
+ public class AtmelParser extends AbstractParser {
+
+-    protected Module module;
++    protected avrora.syntax.Module module;
+
+-    public AtmelParser(java.io.InputStream stream, Module m, String fname) {
++    public AtmelParser(java.io.InputStream stream, avrora.syntax.Module m, String fname) {
+         this(new FileMarkingTokenManager(new SimpleCharStream(stream, 1, 1), fname));
+
+         module = m;
+     }
+
+-    public void ReInit(java.io.InputStream stream, Module m, String fname) {
++    public void ReInit(java.io.InputStream stream, avrora.syntax.Module m, String fname) {
+         ReInit(new FileMarkingTokenManager(new SimpleCharStream(stream, 1, 1), fname));
+
+         module = m;
+     }
+
+-    public AtmelParser(java.io.Reader stream, Module m, String fname) {
++    public AtmelParser(java.io.Reader stream, avrora.syntax.Module m, String fname) {
+         this(new FileMarkingTokenManager(new SimpleCharStream(stream, 1, 1, 4096), fname));
+
+         module = m;
+     }
+
+-    public void ReInit(java.io.Reader stream, Module m, String fname) {
++    public void ReInit(java.io.Reader stream, avrora.syntax.Module m, String fname) {
+         ReInit(new FileMarkingTokenManager(new SimpleCharStream(stream, 1, 1, 4096), fname));
+
+         module = m;
+
+--- avrora/src/avrora/syntax/atmel/AtmelParser.java
++++ avrora/src/avrora/syntax/atmel/AtmelParser.java
+@@ -10,6 +10,6 @@ import cck.parser.SimpleCharStream;
+
+ public class AtmelParser extends AbstractParser implements AtmelParserConstants {
+
+-    public AtmelParser(InputStream stream, Module m, String fname) {
++    public AtmelParser(InputStream stream, avrora.syntax.Module m, String fname) {
+         this(new FileMarkingTokenManager(new SimpleCharStream(stream, 1, 1), fname));
+
+--- avrora/src/cck/test/TestEngine.java
++++ avrora/src/cck/test/TestEngine.java
+@@ -191,7 +191,7 @@ public class TestEngine {
+                     WorkThread thread = threads[cntr];
+                     if ( thread.intest && (now - thread.test_began) > MAXIMUM_TEST_MS) {
+                         thread.interrupt();
+-                        thread.stop(new NonTermination(now - thread.test_began));
++                        thread.stop();
+                     }
+                 }
+                 synchronized(this) {
