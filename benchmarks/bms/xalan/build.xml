@@ -1,18 +1,18 @@
 <project name="xalan" default="all" basedir="../..">
     <description>DaCapo xalan benchmark</description>
     <property file="dacapo.properties"/>
-    
+
     <property name="bm-name" value="xalan"/>
     <property name="bm-version" value="2_7_2"/>
     <property name="bm-url" value="${apache.dl.url}/xalan/xalan-j/source"/>
     <property name="bm-dat-url" value="http://www.w3.org/TR/2001/WD-xforms-20010608/"/>
     <property name="bm-src" value="${bm-name}-j_${bm-version}-src.tar.gz"/>
     <property name="bm-dat-file" value="WD-xforms-20010608.zip"/>
-    
+
     <import file="../common.xml"/>
-    
+
     <property name="xalan-top" value="${bm-build-dir}/xalan-j_${bm-version}"/>
-        
+
     <target name="source" depends="common.source">
         <antcall target="check-source">
             <param name="target-dir" value="${bm-downloads}"/>
@@ -20,26 +20,28 @@
             <param name="target-file" value="WD-xforms-20010608.zip"/>
         </antcall>
     </target>
-    
-    <target name="unpack" depends="untar"/>
-    
-    <target name="bm-build" depends="xerces">
+
+    <target name="unpack" depends="untar">
+      <patch patchfile="bms/${bm-name}/${bm-name}.patch" dir="${bm-build-dir}" strip="1" ignorewhitespace="yes"/>
+    </target>
+
+    <target name="bm-build" depends="unpack, xerces">
         <exec dir="${xalan-top}" executable="ant">
-            <env key="CLASSPATH" value=".:${xerces-jars}/${xerces-impl-jar-name}:${xerces-jars}/${xerces-api-jar-name}"/>
+            <env key="CLASSPATH" value=".:${xerces-jars}/${xerces-impl-jar-name}:${xerces-jars}/${xerces-api-jar-name}:${xalan-top}"/>
         </exec>
         <mkdir dir="${bm-build-dir}/benchmark"/>
-        <javac srcdir="${bm-src-dir}" source="1.5" classpath="${xalan-top}/build/xalan.jar" 
-            destdir="${bm-build-dir}/benchmark/" 
+        <javac srcdir="${bm-src-dir}" source="1.8" classpath="${xalan-top}/build/xalan.jar"
+            destdir="${bm-build-dir}/benchmark/"
             includes="org/dacapo/xalan/*"
             debug="true" debuglevel="lines,vars,source"/>
         <jar destfile="${bm-jars}/dacapo-${bm-name}.jar" basedir="${bm-build-dir}/benchmark"/>
     </target>
-    
+
     <target name="jar">
         <copy file="${xalan-top}/build/xalan.jar" todir="${bm-jars}"/>
         <copy file="${xalan-top}/build/serializer.jar" todir="${bm-jars}"/>
     </target>
-    
+
     <target name="data">
         <mkdir dir="${bm-data}/xalan"/>
         <unzip src="${bm-downloads}/${bm-dat-file}" dest="${bm-data}/xalan">
