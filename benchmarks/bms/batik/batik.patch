@@ -9,16 +9,16 @@
              saxFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
              saxFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
              saxFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-@@ -409,7 +409,7 @@
+@@ -409,5 +409,5 @@
              e.printStackTrace();
          } catch (ParserConfigurationException e) {
              e.printStackTrace();
 -        }
 +        }*/
      }
- 
+
      /**
-@@ -445,9 +445,9 @@
+@@ -445,10 +445,10 @@
                                true);
              parser.setFeature("http://xml.org/sax/features/validation",
                                isValidating);
@@ -30,3 +30,24 @@
              parser.setProperty("http://xml.org/sax/properties/lexical-handler",
                                 this);
              parser.parse(is);
+
+--- batik-1.9/build.xml 2021-09-12 15:55:00.000000000 +0900
++++ batik-1.9/build.xml 2021-09-12 15:55:00.000000000 +0900
+@@ -97,4 +97,4 @@
+    <property name="deprecation"        value="on"/>
+-    <property name="javac.source" value="1.6"/>
++    <property name="javac.source" value="1.8"/>
+-    <property name="javac.target" value="1.6"/>
++    <property name="javac.target" value="1.8"/>
+
+--- batik-1.9/batik-swing/src/main/java/org/apache/batik/swing/gvt/JGVTComponent.java
++++ batik-1.9/batik-swing/src/main/java/org/apache/batik/swing/gvt/JGVTComponent.java
+@@ -1275,7 +1275,7 @@ public class JGVTComponent extends JComponent {
+             securityManager = System.getSecurityManager();
+             if (securityManager != null) {
+                 try {
+-                    securityManager.checkSystemClipboardAccess();
++                    securityManager.checkPermission(new java.awt.AWTPermission("accessClipboard"));
+                 } catch (SecurityException e) {
+                     return; // Can't access clipboard.
+                 }
