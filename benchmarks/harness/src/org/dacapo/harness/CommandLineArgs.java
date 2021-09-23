@@ -3,7 +3,7 @@
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0.
  * You may obtain the license at
- * 
+ *
  *    http://www.opensource.org/licenses/apache2.0.php
  */
 package org.dacapo.harness;
@@ -34,9 +34,9 @@ import org.dacapo.parser.Config;
 
 /**
  * Command line arguments for a dacapo benchmark run.
- * 
+ *
  * Encapsulated in an object so that it can be passed to user-written callbacks.
- * 
+ *
  * date:  $Date: 2009-12-24 11:19:36 +1100 (Thu, 24 Dec 2009) $
  * id: $Id: CommandLineArgs.java 738 2009-12-24 00:19:36Z steveb-oss $
  */
@@ -65,7 +65,7 @@ public class CommandLineArgs {
   public static final String DEFAULT_THREAD_FACTOR = "0"; // 0 represents
                                                           // unspecified
   public static final String DEFAULT_TIMEOUT_DIALATION = "1";
-  
+
   private static final String OPT_CALLBACK = "callback";
   private static final String OPT_HELP = "help";
   private static final String OPT_RELEASE_NOTES = "release-notes";
@@ -92,7 +92,7 @@ public class CommandLineArgs {
   private static final String OPT_THREAD_FACTOR = "thread-factor";
   private static final String OPT_TIMEOUT_DIALATION = "timeout-dialation";
 
-  private static final Option[] OPTIONS = { 
+  private static final Option[] OPTIONS = {
     makeOption("c",  OPT_CALLBACK,            "Use class <callback> to bracket benchmark runs", "callback"),
     makeOption("h",  OPT_HELP,                "Print this help", null), makeOption("r", OPT_RELEASE_NOTES, "Print the release notes", null),
     makeOption("l",  OPT_LIST_BENCHMARKS,     "List available benchmarks", null), makeOption("i", OPT_INFORMATION, "Display benchmark information", null),
@@ -270,6 +270,7 @@ public class CommandLineArgs {
         }
       }
     }
+    benchmarks.add("avrora");
     return benchmarks;
   }
 
@@ -365,7 +366,7 @@ public class CommandLineArgs {
   public String getThreadFactor() {
     return line.getOptionValue(OPT_THREAD_FACTOR, DEFAULT_THREAD_FACTOR);
   }
-  
+
   public String getTimeoutDialation() {
 	  return line.getOptionValue(OPT_TIMEOUT_DIALATION, DEFAULT_TIMEOUT_DIALATION);
   }
@@ -409,16 +410,16 @@ public class CommandLineArgs {
 
   /*
    * Define a commandline option.
-   * 
+   *
    * @param shortName An optional short form name for the command line option.
-   * 
+   *
    * @param longname A commandline option must have a long form name.
-   * 
+   *
    * @param description All commandline options that are visible options must
    * have a description, commandline options that are for internal development
    * usage must not have a description and must instead be documented in the
    * code.
-   * 
+   *
    * @param argName A commandline option that requires has an argument must
    * specify an argument name.
    */
