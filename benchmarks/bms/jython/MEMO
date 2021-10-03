@@ -1,0 +1,8 @@
+how to build jython
+
+install missing java.xml.bind
+- https://stackoverflow.com/questions/52502189/java-11-package-javax-xml-bind-does-not-exist
+- javax.activation-api
+- jaxb-{core,impl,api}
+
+specify external dependency in jython's build.xml
